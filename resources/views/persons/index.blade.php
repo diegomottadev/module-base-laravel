@@ -76,20 +76,33 @@
                                 </thead>
                                 <tbody>
                                     @foreach($persons as $person)
-                                    <tr>
-                                        <td>{{$person->id}}></td>
-                                        <td>{{$person->nameComplete}}></td>
-                                        <td>{{$person->dni}}></td>
-                                        <td>{{$person->cuil}}></td>
-                                        <td></td>
+                                    <tr  class="row-{{$person->id}}">
+                                        <td>{{$person->id}}</td>
+                                        <td>{{$person->nameComplete}}</td>
+                                        <td>{{$person->dni}}</td>
+                                        <td>{{$person->cuil}}</td>
+                                        <td>
+                                            <div style="color:white;" class="btn-group" role="group"
+                                                aria-label="Basic example">
+                                                <a type="button" class="btn btn-sm btn-info"
+                                                    href="{{route('persons.show',$person->id)}}"><i
+                                                        class="fa fa-eye"></i> Ver</a>
+                                                <a type="button" class="btn btn-sm btn-warning"
+                                                    href="{{route('persons.edit',$person->id)}}"><i
+                                                        class="fa fa-edit"></i> Editar</a>
+                                                <button type="button" class="btn btn-sm btn-danger"
+                                                    data-id="{{$person->id}}"><i class="fa fa-trash"></i>
+                                                    Eliminar</button>
+                                            </div>
+                                        </td>
                                     </tr>
-                                    @endforeach   
+                                    @endforeach
                                 </tbody>
                             </table>
                             <div class="text-center">
                                 {{$persons->links()}}
                             </div>
-                           
+
                         </div>
 
                     </div>
@@ -98,4 +111,59 @@
         </div>
     </div>
 
-    @endsection
+@endsection
+@push('scripts')
+
+@routes
+<script>
+    $(document).ready(function () {
+
+        $('.btn-danger').on('click', function () {
+            var id = $(this).data('id');
+            var url = route('persons.destroy', {id: id});
+
+            Swal.fire({
+                title: 'Confirmar',
+                text: "¿Eliminar persona?",
+                type: 'info',
+                showCancelButton: true,
+                cancelButtonText: "Cancelar",
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Confirmar'
+            }).then(function (result) {
+                if (result.value) {
+                    axios.delete(url)
+                        .then(function (res) {
+
+                            if (res.status === 204) {
+
+                                const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                onOpen: (toast) => {
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                    }
+                                })
+
+                                Toast.fire({
+                                    icon: 'success',
+                                    title: 'Persona elimininada'
+                                })
+
+                                $('.row-'+id).remove();
+                            } 
+
+                        }).catch(function (res) {
+                            swal("No tiene los privilegios para realizar esta acción!", '', 'error');
+                        });
+                }
+            });
+        });
+    });
+</script>
+@endpush

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend\AdminControllers;
 use App\Http\Controllers\Controller;
 use App\Person;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Carbon;
 class PersonController extends Controller
 {
     //
@@ -24,14 +24,16 @@ class PersonController extends Controller
     }
 
     public function store(Request $request ){
+
+        $burndate = Carbon::createFromFormat('d/m/Y', $request->input('burndate'));
         $person = Person::create([
             'name' => $request->get('name'),
             'surname' => $request->get('surname'),
             'nameComplete' =>  $request->get('name')." ".$request->get('surname'),
             'dni' => $request->get('dni'),
             'cuil' => $request->get('cuil'),
-            'burndate' => $request->get('burndate'),
-            'password' => bcrypt($request->get('password'))
+            'burndate' => $burndate,
+            // 'password' => bcrypt($request->get('password'))
         ]);
         return redirect()->route('persons.index')->with('toast_success', 'Persona '.$person->nameComplete.' creada');
     }
@@ -42,13 +44,13 @@ class PersonController extends Controller
 
     public function update(Request $request,$id ){
 
+        $burndate = Carbon::createFromFormat('d/m/Y', $request->input('burndate'));
         $person  = Person::findOrFail($id);
         $person->name = $request->get('name');
         $person->surname = $request->get('surname');
         $person->dni = $request->get('dni');
         $person->cuil = $request->get('cuil');
-        $person->burndate = $request->get('burndate');
-
+        $person->burndate =  $burndate;
 
         return redirect()->route('persons.index')->with('toast_success', 'Persona '.$person->nameComplete.' modificada');
     }

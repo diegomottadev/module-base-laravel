@@ -25,24 +25,15 @@
         <div class="col-lg-12">
             <div class="ibox ">
                 <div class="ibox-title">
-                    <h5>Usuarios <small></small></h5>
-                    {{-- <div class="ibox-tools">
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
+                    <h5><small></small></h5>
+                    <div class="ibox-tools">
+
+                        <a class="btn btn-sm btn-primary" href="{{route('users.new')}}">
+                            <i class="fa fa-plus"></i> Nuevo
                         </a>
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-wrench"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li><a href="#" class="dropdown-item">Config option 1</a>
-                            </li>
-                            <li><a href="#" class="dropdown-item">Config option 2</a>
-                            </li>
-                        </ul>
-                        <a class="close-link">
-                            <i class="fa fa-times"></i>
-                        </a>
-                    </div> --}}
+
+
+                    </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
@@ -66,59 +57,46 @@
                                 </label>
                             </div>
                         </div> --}}
-                        <div class="col-sm-3">
-                            <div class="input-group"><input placeholder="Email/Cuil/Nombre" type="text"
+                        {{-- <div class="col-sm-3">
+                            <div class="input-group"><input placeholder="Nombre" type="text"
                                     class="form-control form-control-sm"> <span class="input-group-append"> <button
                                         type="button" class="btn btn-sm btn-primary"><i class="fa fa-search"></i>
 
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
                                 <tr>
 
-                                    <th></th>
-                                    <th>Project </th>
-                                    <th>Completed </th>
-                                    <th>Task</th>
-                                    <th>Date</th>
-                                    <th>Action</th>
+                                    <th>#ID</th>
+                                    <th>Nombre </th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><input type="checkbox" checked class="i-checks" name="input[]"></td>
-                                    <td>Project<small>This is example of project</small></td>
-                                    <td><span class="pie">0.52/1.561</span></td>
-                                    <td>20%</td>
-                                    <td>Jul 14, 2013</td>
-                                    <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
+                                @foreach ($users as $user)
+
+                                <tr class="row-{{$user->id}}">
+                                    <td>{{$user->id}}</td>
+                                    <td>{{$user->name}}</td>
+                                    <td>{{$user->email}}</td>
+                                    <td>
+                                        <div style="color:white;" class="btn-group" role="group"
+                                            aria-label="Basic example">
+                                            <a type="button" class="btn btn-sm btn-info"
+                                                href="{{route('users.show',$user->id)}}"><i
+                                                    class="fa fa-eye"></i> Ver</a>
+                                            <a type="button" class="btn btn-sm btn-warning"
+                                                href="{{route('users.edit',$user->id)}}"><i class="fa fa-edit"></i>
+                                                Editar</a>
+                                            <button type="button" class="btn btn-sm btn-danger"
+                                                data-id="{{$user->id}}"><i class="fa fa-trash"></i> Eliminar</button>
+                                        </div>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="i-checks" name="input[]"></td>
-                                    <td>Alpha project</td>
-                                    <td><span class="pie">6,9</span></td>
-                                    <td>40%</td>
-                                    <td>Jul 16, 2013</td>
-                                    <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="i-checks" name="input[]"></td>
-                                    <td>Betha project</td>
-                                    <td><span class="pie">3,1</span></td>
-                                    <td>75%</td>
-                                    <td>Jul 18, 2013</td>
-                                    <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="checkbox" class="i-checks" name="input[]"></td>
-                                    <td>Gamma project</td>
-                                    <td><span class="pie">4,9</span></td>
-                                    <td>18%</td>
-                                    <td>Jul 22, 2013</td>
-                                    <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                </tr>
+                                @endforeach
+
                             </tbody>
                         </table>
                     </div>
@@ -130,3 +108,58 @@
 </div>
 
 @endsection
+@push('scripts')
+
+@routes
+<script>
+    $(document).ready(function () {
+
+        $('.btn-danger').on('click', function () {
+            var id = $(this).data('id');
+            var url = route('users.destroy', {id: id});
+
+            Swal.fire({
+                title: 'Confirmar',
+                text: "¿Eliminar usuario?",
+                type: 'info',
+                showCancelButton: true,
+                cancelButtonText: "Cancelar",
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Confirmar'
+            }).then(function (result) {
+                if (result.value) {
+                    axios.delete(url)
+                        .then(function (res) {
+
+                            if (res.status === 204) {
+
+                                const Toast = Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                onOpen: (toast) => {
+                                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                    }
+                                })
+
+                                Toast.fire({
+                                    icon: 'success',
+                                    title: 'Usuario elimininada'
+                                })
+
+                                $('.row-'+id).remove();
+                            } 
+
+                        }).catch(function (res) {
+                            swal("No tiene los privilegios para realizar esta acción!", '', 'error');
+                        });
+                }
+            });
+        });
+    });
+</script>
+@endpush

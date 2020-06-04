@@ -177,8 +177,7 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         Tightenco\Ziggy\ZiggyServiceProvider::class,
-        Laraveles\Spanish\SpanishServiceProvider::class,
-
+        Laraveles\Spanish\SpanishServiceProvider::class
     ],
 
     /*
@@ -230,8 +229,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
-
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class
     ],
 
 ];

@@ -18,9 +18,9 @@ class CreatePersonsTable extends Migration
             $table->string('name');
             $table->string('surname');
             $table->string('nameComplete');
-            $table->string('dni');
-            $table->string('cuil');
-            $table->string('burndate')->nullable();
+            $table->string('dni')->nullable();
+            $table->string('cuil')->nullable();
+            $table->date('burndate')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

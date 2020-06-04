@@ -5,6 +5,8 @@
             <input type="text" placeholder="Nombre" name="name"
                 class="form-control" value="{{isset($person) ? $person->name : old('name')}}" >
         </div>
+    </div>
+        <div class="col-sm-6">
         <div class="form-group">
             <label>Apellido</label>
             <input type="text" placeholder="Apellido" name="surname"
@@ -19,6 +21,8 @@
             <input type="text" placeholder="DNI" name="dni"
                 class="form-control" value="{{isset($person) ? $person->dni : old('dni')}}" >
         </div>
+    </div>
+    <div class="col-sm-6">
         <div class="form-group">
             <label>CUIL</label>
             <input type="text" placeholder="CUIL" name="cuil"
@@ -31,7 +35,7 @@
         <div class="form-group">
             <label>Fecha de nacimiento</label>
             <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input id="burndate" name="burndate" type="text" class="form-control" value="{{isset($person) ? $person->burndate : old('burndate')}}" >
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input placeholder="Fecha de nacimiento" id="burndate" name="burndate" type="text" class="form-control" value="{{isset($person) ? $person->burndate->format('d/m/Y') : old('burndate')}}" >
             </div>
         
         </div>

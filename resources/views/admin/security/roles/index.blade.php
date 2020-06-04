@@ -28,12 +28,12 @@
                     <h5><small></small></h5>
                     <div class="ibox-tools">
 
-                    <a class="btn btn-sm btn-primary"  href="{{route('roles.new')}}">
+                        <a class="btn btn-sm btn-primary" href="{{route('roles.new')}}">
                             <i class="fa fa-plus"></i> Nuevo
                         </a>
 
 
-                    </div> 
+                    </div>
                 </div>
                 <div class="ibox-content">
                     <div class="row">
@@ -67,7 +67,7 @@
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
-                                <tr >
+                                <tr>
 
                                     <th>#ID</th>
                                     <th>Nombre </th>
@@ -76,16 +76,22 @@
                             </thead>
                             <tbody>
                                 @foreach ($roles as $role)
-                                    
+
                                 <tr class="row-{{$role->id}}">
-                                <td>{{$role->id}}</td>
+                                    <td>{{$role->id}}</td>
                                     <td>{{$role->name}}</td>
                                     <td>
-                                        <div style="color:white;" class="btn-group" role="group" aria-label="Basic example">
-                                            <a type="button" class="btn btn-sm btn-info" href="{{route('permissions.index',$role->id)}}"><i class="fa fa-list"></i> Permisos</a>
-                                        <a type="button" class="btn btn-sm btn-warning" href="{{route('roles.edit',$role->id)}}"><i class="fa fa-edit"></i>  Editar</a>
-                                            <button type="button" class="btn btn-sm btn-danger" data-id="{{$role->id}}"><i class="fa fa-trash"></i>  Eliminar</button>
-                                          </div>
+                                        <div style="color:white;" class="btn-group" role="group"
+                                            aria-label="Basic example">
+                                            <a type="button" class="btn btn-sm btn-info"
+                                                href="{{route('permissions.index',$role->id)}}"><i
+                                                    class="fa fa-list"></i> Permisos</a>
+                                            <a type="button" class="btn btn-sm btn-warning"
+                                                href="{{route('roles.edit',$role->id)}}"><i class="fa fa-edit"></i>
+                                                Editar</a>
+                                            <button type="button" class="btn btn-sm btn-danger"
+                                                data-id="{{$role->id}}"><i class="fa fa-trash"></i> Eliminar</button>
+                                        </div>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -105,7 +111,6 @@
 
 @routes
 <script>
-
     $(document).ready(function () {
 
         $('.btn-danger').on('click', function () {
@@ -114,7 +119,7 @@
 
             Swal.fire({
                 title: 'Confirmar',
-                text: "¿Eliminar categoría?",
+                text: "¿Eliminar rol?",
                 type: 'info',
                 showCancelButton: true,
                 cancelButtonText: "Cancelar",
