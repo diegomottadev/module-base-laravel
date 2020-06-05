@@ -18,6 +18,7 @@ Route::get('/admin/permissions/{id}/edit', 'PermissionController@edit')->name('p
 Route::put('/admin/permissions/{id}/update', 'PermissionController@update')->name('permissions.update');
 Route::delete('/admin/permissions/{id}', 'PermissionController@destroy')->name('permissions.destroy');
 
+
 Route::get('/admin/users', 'UserController@index')->name('users.index');
 Route::post('/admin/users', 'UserController@store')->name('users.store');
 Route::get('/admin/users/new', 'UserController@new')->name('users.new');
@@ -25,6 +26,8 @@ Route::get('/admin/users/{id}/show', 'UserController@show')->name('users.show');
 Route::get('/admin/users/{id}/edit', 'UserController@edit')->name('users.edit');
 Route::put('/admin/users/{id}/update', 'UserController@update')->name('users.update');
 Route::delete('/admin/users/{id}', 'UserController@destroy')->name('users.destroy');
+Route::get('/admin/users/persons','UserController@getPersons')->name('users.getpersons');
+
 
 Route::get('/persons', 'PersonController@index')->name('persons.index');
 Route::post('/persons', 'PersonController@store')->name('persons.store');

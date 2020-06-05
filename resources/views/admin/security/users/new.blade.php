@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @push('styles')
 <link href="{{asset('admin/css/plugins/select2/select2.min.css')}}" rel="stylesheet">
-<link href="{{asset('admin/css/plugins/select2/select2-bootstrap4.min.css')}}"rel="stylesheet">
+<link href="{{asset('admin/css/plugins/select2/select2-bootstrap4.min.css')}}" rel="stylesheet">
 @endpush
 @section('content')
 <div>
@@ -31,7 +31,8 @@
                     <div class="ibox-title">
                         <h5> <small></small></h5>
                         <div class="ibox-tools">
-                            <a type="button"  href="{{ url()->previous() }}" class="btn btn-sm btn-default"> <i class="fa fa-arrow-left"></i> Atras</a>
+                            <a type="button" href="{{ url()->previous() }}" class="btn btn-sm btn-default"> <i
+                                    class="fa fa-arrow-left"></i> Atras</a>
                         </div>
                     </div>
                     <div class="ibox-content">
@@ -40,7 +41,7 @@
                                 <form role="form" method="POST" action="{{ route('users.store') }}">
                                     @csrf
 
-                                    @include('admin.security.users.partials.form')  
+                                    @include('admin.security.users.partials.form')
                                 </form>
                             </div>
 
@@ -54,13 +55,42 @@
 </div>
 @endsection
 @push('scripts')
+@routes
 <script src="{{asset('admin/js/plugins/select2/select2.full.min.js')}}"></script>
 
 <script>
- $("#roles").select2({
-                theme: 'bootstrap4',
-            
+    $("#roles").select2({
+     theme: 'bootstrap4',
     });
+
+    $('#person').select2({
+
+        ajax: {
+            delay : 1000,
+            allowClear: true,
+            url: route('users.getpersons'),
+            dataType: 'json',
+            data: function(params) {
+                return {
+                    term: params.term || '',
+                    page: params.page || 1
+                }
+            },
+            processResults: function (response) {
+                console.log(response);
+                return {
+                    results: response.results,
+                    pagination: {
+                        more: response.pagination.more
+                    }
+                };
+            },
+            cache: true
+        }
+    });
+
 </script>
+
+
 
 @endpush

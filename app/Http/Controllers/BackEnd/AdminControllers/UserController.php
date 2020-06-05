@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\AdminControllers;
 
 use App\Http\Controllers\Controller;
+use App\Person;
 use App\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
@@ -10,49 +11,63 @@ use Spatie\Permission\Models\Role;
 class UserController extends Controller
 {
     //
-    public function index(){
+    public function index()
+    {
         $users = User::paginate(10);
-        return view('admin/security/users/index',compact('users'));
+        return view('admin/security/users/index', compact('users'));
     }
 
-    public function new(){
+    public function new()
+    {
         $roles = $this->getRoles();
-        return view('admin/security/users/new',compact('roles'));
+        return view('admin/security/users/new', compact('roles'));
     }
 
-    public function show($id){
+    public function show($id)
+    {
         $user  = User::findOrFail($id);
-        return view('admin/security/users/show',compact('user'));
+        return view('admin/security/users/show', compact('user'));
     }
 
-    public function store(Request $request ){
-
+    public function store(Request $request)
+    {
+    
         $user = User::create([
             'name' => $request->get('name'),
             'email' => $request->get('email'),
             'password' => bcrypt($request->get('password'))
+            
         ]);
-       
-        $user->assignRole($request->get('roles')); 
-        return redirect()->route('users.index')->with('toast_success', 'Usuario '.$user->name.' creada');
+
+        if ($request->get('person')!=null){
+            $person = Person::findOrFail($request->get('person'));
+            $person->user_id = $request->get('person');
+            $person->save();
+        }
+        
+        $user->assignRole($request->get('roles'));
+        return redirect()->route('users.index')->with('toast_success', 'Usuario ' . $user->name . ' creada');
     }
-    public function edit($id ){
+    public function edit($id)
+    {
         $roles = $this->getRoles();
         $user = User::with(['roles'])->findOrFail($id);
-        return view('admin/security/users/edit',compact('user','roles'));
+        return view('admin/security/users/edit', compact('user', 'roles'));
     }
 
-    public function update(Request $request,$id ){
+    public function update(Request $request, $id)
+    {
 
         $user  = User::findOrFail($id);
         $user->name = $request->get('name');
         $user->email = $request->get('email');
-        $user->syncRoles($request->get('roles')); 
+        $user->syncRoles($request->get('roles'));
         $user->save();
-        return redirect()->route('users.index')->with('toast_success', 'Usuario '.$user->name.' modificada');
+        return redirect()->route('users.index')->with('toast_success', 'Usuario ' . $user->name . ' modificada');
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $user = User::findOrFail($id);
         $user->delete();
         return response()->noContent();
@@ -64,5 +79,49 @@ class UserController extends Controller
         $tmp = Role::all();
 
         return $tmp;
+    }
+
+   
+
+    public function getPersons(Request $request)
+    {
+            $page = $request->page;
+            $resultCount = 10;
+            $offset = ($page - 1) * $resultCount;
+
+            $persons = Person::orderBy('name')
+            ->skip($offset)
+            ->take($resultCount)
+            ->selectRaw('id,nameComplete as text')
+            ->get();
+
+            $count = Count(Person::orderBy('name')
+            ->selectRaw('id,nameComplete as text')
+            ->get());
+
+            if ( $request->term!= null){
+                $persons = Person::where('nameComplete', 'LIKE', '%' . $request->term . '%')
+                ->orderBy('name')
+                ->skip($offset)
+                ->take($resultCount)
+                ->selectRaw('id, nameComplete as text')
+                ->get();
+
+                $count = Count(Person::where('nameComplete', 'LIKE', '%' . $request->term . '%')
+                ->orderBy('name')
+                ->selectRaw('id,nameComplete as text')
+                ->get());
+            }
+
+            $endCount = $offset + $resultCount;
+            $morePages = $count > $endCount;
+            $results = array(
+                "results" => $persons,
+                "pagination" => array(
+                    "more" => $morePages
+                )
+            );
+
+            return response()->json($results);
     }
 }
