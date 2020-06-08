@@ -54,12 +54,43 @@
 </div>
 @endsection
 @push('scripts')
+@routes
 <script src="{{asset('admin/js/plugins/select2/select2.full.min.js')}}"></script>
 
 <script>
- $("#roles").select2({
-  theme: 'bootstrap4',
- });
+    $("#roles").select2({
+     theme: 'bootstrap4',
+    });
+
+    var tagsControl = $('#person').select2({
+
+        ajax: {
+            delay : 1000,
+            allowClear: true,
+            url: route('users.getpersons'),
+            dataType: 'json',
+            data: function(params) {
+
+                return {
+                    term: params.term || '',
+                    page: params.page || 1
+                }
+            },
+            processResults: function (response) {
+                return {
+                    results: response.results,
+                    pagination: {
+                        more: response.pagination.more
+                    }
+                };
+            },
+
+            cache: true
+        }
+    });
+
 </script>
+
+
 
 @endpush

@@ -21,6 +21,9 @@ class CreatePersonsTable extends Migration
             $table->string('dni')->nullable();
             $table->string('cuil')->nullable();
             $table->date('burndate')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained();
+            $table->foreignId('contact_id')->nullable()->constrained();
+            $table->foreignId('address_id')->nullable()->constrained();
             $table->timestamps();
             $table->softDeletes();
         });

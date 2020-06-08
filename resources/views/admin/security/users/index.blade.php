@@ -70,7 +70,9 @@
                                 <tr>
 
                                     <th>#ID</th>
-                                    <th>Nombre </th>
+                                    <th>Nombre de usuario</th>
+                                    <th>Email</th>
+                                    <td>Nombre y Apellido</td>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -81,6 +83,7 @@
                                     <td>{{$user->id}}</td>
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
+                                    <td>{{ isset($user->person) ? $user->person->nameComplete: ''}}</td>
                                     <td>
                                         <div style="color:white;" class="btn-group" role="group"
                                             aria-label="Basic example">

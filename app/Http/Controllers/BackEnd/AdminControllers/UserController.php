@@ -13,7 +13,7 @@ class UserController extends Controller
     //
     public function index()
     {
-        $users = User::paginate(10);
+        $users = User::with(['person','roles'])->paginate(10);
         return view('admin/security/users/index', compact('users'));
     }
 
@@ -41,17 +41,18 @@ class UserController extends Controller
 
         if ($request->get('person')!=null){
             $person = Person::findOrFail($request->get('person'));
-            $person->user_id = $request->get('person');
+            $person->user_id = $user->id;
             $person->save();
         }
         
         $user->assignRole($request->get('roles'));
+
         return redirect()->route('users.index')->with('toast_success', 'Usuario ' . $user->name . ' creada');
     }
     public function edit($id)
     {
         $roles = $this->getRoles();
-        $user = User::with(['roles'])->findOrFail($id);
+        $user = User::with(['roles','person'])->findOrFail($id);
         return view('admin/security/users/edit', compact('user', 'roles'));
     }
 
@@ -62,6 +63,14 @@ class UserController extends Controller
         $user->name = $request->get('name');
         $user->email = $request->get('email');
         $user->syncRoles($request->get('roles'));
+
+
+        if ($request->get('person')!=null){
+            $person = Person::findOrFail($request->get('person'));
+            $person->user_id = $user->id;
+            $person->save();
+        }
+
         $user->save();
         return redirect()->route('users.index')->with('toast_success', 'Usuario ' . $user->name . ' modificada');
     }

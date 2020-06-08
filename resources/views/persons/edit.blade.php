@@ -15,7 +15,7 @@
                     <a>Personas</a>
                 </li>
                 <li class="breadcrumb-item active">
-                    <strong>Editar</strong> <small>({{$person->nameComple}})
+                    <strong>Editar</strong> <small>({{$person->nameComplete}})
                 </li>
             </ol>
         </div>

@@ -2,60 +2,61 @@
 
 namespace App\Http\Controllers\Backend\AdminControllers;
 
+use App\Contact;
 use App\Http\Controllers\Controller;
 use App\Person;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+
 class PersonController extends Controller
 {
     //
-    public function index(){
+    public function index()
+    {
         $persons = Person::paginate(10);
-        return view('persons/index',compact('persons'));
+        return view('persons/index', compact('persons'));
     }
 
-    public function new(){
+    public function new()
+    {
         return view('persons/new');
     }
 
-    public function show($id){
+    public function show($id)
+    {
         $person  = Person::findOrFail($id);
-        return view('persons/show',compact('person'));
+        return view('persons/show', compact('person'));
     }
 
-    public function store(Request $request ){
+    public function store(Request $request)
+    {
+ 
+        $person = Person::create($request->all());
+        $contact = Contact::create($request->all());
+        $person->contact()->associate($contact);
+        $person->save();
 
-        $burndate = Carbon::createFromFormat('d/m/Y', $request->input('burndate'));
-        $person = Person::create([
-            'name' => $request->get('name'),
-            'surname' => $request->get('surname'),
-            'nameComplete' =>  $request->get('name')." ".$request->get('surname'),
-            'dni' => $request->get('dni'),
-            'cuil' => $request->get('cuil'),
-            'burndate' => $burndate,
-            // 'password' => bcrypt($request->get('password'))
-        ]);
-        return redirect()->route('persons.index')->with('toast_success', 'Persona '.$person->nameComplete.' creada');
+        return redirect()->route('persons.index')->with('toast_success', 'Persona ' . $person->nameComplete . ' creada');
     }
-    public function edit($id ){
+    public function edit($id)
+    {
         $person = Person::findOrFail($id);
-        return view('persons/edit',compact('person'));
+        return view('persons/edit', compact('person'));
     }
 
-    public function update(Request $request,$id ){
+    public function update(Request $request, $id)
+    {
 
-        $burndate = Carbon::createFromFormat('d/m/Y', $request->input('burndate'));
-        $person  = Person::findOrFail($id);
-        $person->name = $request->get('name');
-        $person->surname = $request->get('surname');
-        $person->dni = $request->get('dni');
-        $person->cuil = $request->get('cuil');
-        $person->burndate =  $burndate;
+        $person  = Person::with(['contact'])->findOrFail($id);
+        $person->update($request->all());
+        $contact = $person->contact;
+        $contact->update($request->all());
 
-        return redirect()->route('persons.index')->with('toast_success', 'Persona '.$person->nameComplete.' modificada');
+        return redirect()->route('persons.index')->with('toast_success', 'Persona ' . $person->nameComplete . ' modificada');
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
         $person = Person::findOrFail($id);
         $person->delete();
         return response()->noContent();

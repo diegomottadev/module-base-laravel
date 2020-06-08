@@ -40,6 +40,8 @@
         <label>Persona</label>
         <select class="form-control m-b" id="person" name="person" placeholder="Persona">
             <option type="text" value="">-- Seleccionar Persona --</option>
+            <option value="{{isset($user->person) ? $user->person->id :  '' }}" selected="selected">{{isset($user->person) ? $user->person->nameComplete : old('person')}}</option>
+
         </select>
     </div>
 </div>

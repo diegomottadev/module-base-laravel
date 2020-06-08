@@ -5,7 +5,35 @@
  *
  */
 
+$('#side-menu').metisMenu();
+// // Run menu of canvas
+$('body.canvas-menu .sidebar-collapse').slimScroll({
+    height: '100%',
+    railOpacity: 0.9
+});
+// Initialize slimscroll for right sidebar
+$('.sidebar-container').slimScroll({
+    height: '100%',
+    railOpacity: 0.4,
+    wheelStep: 10
+});
 
+// Open close right sidebar
+$('.right-sidebar-toggle').on('click', function (e) {
+    e.preventDefault();
+    $('#right-sidebar').toggleClass('sidebar-open');
+});
+
+// Initialize slimscroll for small chat
+$('.small-chat-box .content').slimScroll({
+    height: '234px',
+    railOpacity: 0.4
+});
+
+// Add slimscroll to element
+$('.full-height-scroll').slimscroll({
+    height: '100%'
+})
 $(document).ready(function () {
 
     // Fast fix bor position issue with Propper.js
@@ -65,24 +93,7 @@ $(document).ready(function () {
         SmoothlyMenu();
     });
 
-    // // Run menu of canvas
-    // $('body.canvas-menu .sidebar-collapse').slimScroll({
-    //     height: '100%',
-    //     railOpacity: 0.9
-    // });
 
-    // Open close right sidebar
-    $('.right-sidebar-toggle').on('click', function (e) {
-        e.preventDefault();
-        $('#right-sidebar').toggleClass('sidebar-open');
-    });
-
-    // Initialize slimscroll for right sidebar
-    // $('.sidebar-container').slimScroll({
-    //     height: '100%',
-    //     railOpacity: 0.4,
-    //     wheelStep: 10
-    // });
 
     // Open close small chat
     $('.open-small-chat').on('click', function (e) {
@@ -91,11 +102,7 @@ $(document).ready(function () {
         $('.small-chat-box').toggleClass('active');
     });
 
-    // Initialize slimscroll for small chat
-    // $('.small-chat-box .content').slimScroll({
-    //     height: '234px',
-    //     railOpacity: 0.4
-    // });
+
 
     // Small todo handler
     $('.check-link').on('click', function () {
@@ -108,10 +115,10 @@ $(document).ready(function () {
 
     // Append config box / Only for demo purpose
     // Uncomment on server mode to enable XHR calls
-    //$.get("skin-config.html", function (data) {
-    //    if (!$('body').hasClass('no-skin-config'))
-    //        $('body').append(data);
-    //});
+    $.get("skin-config.html", function (data) {
+        if (!$('body').hasClass('no-skin-config'))
+            $('body').append(data);
+    });
 
     // Minimalize menu
     $('.navbar-minimalize').on('click', function (event) {
@@ -140,15 +147,12 @@ $(document).ready(function () {
     $("[data-toggle=popover]")
         .popover();
 
-    // Add slimscroll to element
-    // $('.full-height-scroll').slimscroll({
-    //     height: '100%'
-    // })
+
 });
 
 // Minimalize menu when screen is less than 768px
 $(window).bind("resize", function () {
-    if (window.innerWidth  < 769) {
+    if (window.innerWidth < 769) {
         $('body').addClass('body-small')
     } else {
         $('body').removeClass('body-small')
@@ -158,10 +162,10 @@ $(window).bind("resize", function () {
 // Fixed Sidebar
 $(window).bind("load", function () {
     if ($("body").hasClass('fixed-sidebar')) {
-        // $('.sidebar-collapse').slimScroll({
-        //     height: '100%',
-        //     railOpacity: 0.9
-        // });
+        $('.sidebar-collapse').slimScroll({
+            height: '100%',
+            railOpacity: 0.9
+        });
     }
 });
 
@@ -186,10 +190,10 @@ $(document).ready(function () {
 
         if (fixedsidebar == 'on') {
             body.addClass('fixed-sidebar');
-            // $('.sidebar-collapse').slimScroll({
-            //     height: '100%',
-            //     railOpacity: 0.9
-            // });
+            $('.sidebar-collapse').slimScroll({
+                height: '100%',
+                railOpacity: 0.9
+            });
         }
 
         if (collapse == 'on') {
