@@ -77,7 +77,6 @@
                 }
             },
             processResults: function (response) {
-                console.log(response);
                 return {
                     results: response.results,
                     pagination: {
@@ -88,9 +87,5 @@
             cache: true
         }
     });
-
 </script>
-
-
-
 @endpush

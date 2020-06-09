@@ -87,6 +87,9 @@
         </div>
     </div>
 </div>
+
+<address-component></address-component>
+
 <div class="form-group">
     <button class="btn btn-sm btn-primary float-right m-t-n-xs" type="submit"><i
             class="fa fa-save"></i> Guardar</button>

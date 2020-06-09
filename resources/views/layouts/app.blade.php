@@ -106,12 +106,14 @@
     <link href="{{ asset('admin/css/style.css')}}" rel="stylesheet">
     <!-- Sweet Alert 2  -->
     <link href="{{ asset('admin/css/plugins/sweetalert2/sweetalert2.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
+
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
     @stack('styles')
 </head>
 
-<body class="md-skin">
+<body  class="md-skin">
+    
     <div id="wrapper">
         <nav class="navbar-default navbar-static-side" role="navigation">
             <div class="sidebar-collapse">
@@ -132,7 +134,7 @@
 
 
                                 <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                              document.getElementById('logout-form').submit();">
+                                            document.getElementById('logout-form').submit();">
                                         Salir
                                     </a>
 
@@ -280,10 +282,8 @@
 
 
                         <li>
-
-
                             <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                  document.getElementById('logout-form').submit();">
+                                document.getElementById('logout-form').submit();">
                                 <i class="fa fa-sign-out"></i> Salir
                             </a>
 
@@ -301,7 +301,8 @@
 
                 </nav>
             </div>
-            <div>
+            <div id="app">
+
                 @yield('content')
             </div>
             <div class="footer">
@@ -334,6 +335,7 @@
     <script src="{{asset('admin/js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
     <script src="{{asset('admin/js/plugins/slimscroll/jquery.slimscroll.js')}}"></script> 
     <script src="{{asset('admin/js/inspinia.js')}}"></script>
+    <script defer src="{{ mix('js/app.js') }}"></script>
     @include('sweetalert::alert')
     @stack('scripts')
     <script>
