@@ -25,3 +25,9 @@ Route::get('/country/{id}/provinces', 'Backend\AdminControllers\ProvinceControle
 Route::get('/province/{id}/cities', 'Backend\AdminControllers\CityControler@getCities')->name('cities');
 Route::get('/city/{id}/towns', 'Backend\AdminControllers\TownControler@getTowns')->name('towns');
 
+
+
+Route::get('/country/{id}', 'Backend\AdminControllers\CountryController@getCountry')->name('country');
+Route::get('/province/{id}', 'Backend\AdminControllers\ProvinceControler@getProvince')->name('province');
+Route::get('/city/{id}', 'Backend\AdminControllers\CityControler@getCity')->name('city');
+Route::get('/town/{id}', 'Backend\AdminControllers\TownControler@getTown')->name('town');

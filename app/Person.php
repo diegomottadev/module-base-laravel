@@ -25,6 +25,11 @@ class Person extends Model
         return $this->belongsTo('App\Contact');
     }
 
+    public function address()
+    {
+        return $this->belongsTo('App\Address');
+    }
+
     public function setBurndateAttribute($value)
     {
         $this->attributes['burndate'] = Carbon::createFromFormat('d/m/Y', $value->format('d/m/Y'));

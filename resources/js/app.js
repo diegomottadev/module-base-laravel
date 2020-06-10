@@ -5,8 +5,20 @@
  */
 
 require('./bootstrap');
+import route from 'ziggy';
+import { Ziggy } from './ziggy';
 
 window.Vue = require('vue');
+
+window.route = route;
+window.Ziggy = Ziggy;
+Vue.mixin({
+  methods: {
+    route: (name, params, absolute) => route(name, params, absolute, Ziggy),
+  }
+});
+
+
 import Vue from 'vue'
 import vSelect from 'vue-select'
 Vue.component('v-select', vSelect)
@@ -33,7 +45,4 @@ Vue.component('address-component', require('./components/AddressComponent.vue').
 
 const app = new Vue({
     el: '#app',
-    
 });
-
-

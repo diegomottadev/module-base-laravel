@@ -177,7 +177,8 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         Tightenco\Ziggy\ZiggyServiceProvider::class,
-        Laraveles\Spanish\SpanishServiceProvider::class
+        Laraveles\Spanish\SpanishServiceProvider::class,
+        App\Providers\BladeServiceProvider::class,
     ],
 
     /*

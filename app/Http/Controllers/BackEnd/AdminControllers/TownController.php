@@ -15,4 +15,9 @@ class TownControler extends Controller
         $towns = Town::where('city_id',$city->id)->selectRaw('id,name')->get();
         return response()->json($towns);
     }
+
+    public function getTown($id){
+        $town = Town::findOrFail($id);
+        return response()->json($town);
+    }
 }

@@ -106,7 +106,7 @@
     <link href="{{ asset('admin/css/style.css')}}" rel="stylesheet">
     <!-- Sweet Alert 2  -->
     <link href="{{ asset('admin/css/plugins/sweetalert2/sweetalert2.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}" />
 
     <!-- Scripts -->
     @stack('styles')
@@ -335,7 +335,7 @@
     <script src="{{asset('admin/js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>
     <script src="{{asset('admin/js/plugins/slimscroll/jquery.slimscroll.js')}}"></script> 
     <script src="{{asset('admin/js/inspinia.js')}}"></script>
-    <script defer src="{{ mix('js/app.js') }}"></script>
+    <script  src="{{ asset('js/app.js') }}"></script>
     @include('sweetalert::alert')
     @stack('scripts')
     <script>

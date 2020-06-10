@@ -1,3 +1,5 @@
+
+<h2>Datos personales</h2>
 <div class="row">
     <div class="col-sm-6">
         <div class="form-group">
@@ -45,7 +47,7 @@
      
     </div>
 </div>
-
+<h2>Datos de contacto</h2>
 <div class="row">
     <div class="col-sm-6">
         <div class="form-group">
@@ -87,9 +89,13 @@
         </div>
     </div>
 </div>
-
+<h2>Datos de dirección</h2>
+@if(isset($person))
+<address-component :addressj='@json($person->address)'></address-component>
+@else
 <address-component></address-component>
 
+@endif
 <div class="form-group">
     <button class="btn btn-sm btn-primary float-right m-t-n-xs" type="submit"><i
             class="fa fa-save"></i> Guardar</button>

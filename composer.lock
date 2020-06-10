@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c5456129b34265ed889c45c32562b020",
+    "content-hash": "24deca6b7edf480432144fd942b6fae1",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4335,16 +4335,16 @@
         },
         {
             "name": "tightenco/ziggy",
-            "version": "0.9.3",
+            "version": "0.9.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tightenco/ziggy.git",
-                "reference": "1cfa5fe2e3c54baa87249cb0506b1afd7753f2b9"
+                "reference": "82ea6ec6cb6ab3545b0245310b2a424316fe48d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tightenco/ziggy/zipball/1cfa5fe2e3c54baa87249cb0506b1afd7753f2b9",
-                "reference": "1cfa5fe2e3c54baa87249cb0506b1afd7753f2b9",
+                "url": "https://api.github.com/repos/tightenco/ziggy/zipball/82ea6ec6cb6ab3545b0245310b2a424316fe48d8",
+                "reference": "82ea6ec6cb6ab3545b0245310b2a424316fe48d8",
                 "shasum": ""
             },
             "require": {
@@ -4388,7 +4388,7 @@
                 "laravel",
                 "routes"
             ],
-            "time": "2020-05-08T19:53:09+00:00"
+            "time": "2020-06-05T14:42:41+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",

@@ -15,4 +15,9 @@ class ProvinceControler extends Controller
         $provinces = Province::where('country_id',$country->id)->selectRaw('id,name')->get();;
         return response()->json($provinces);
     }
+
+    public function getProvince($id){
+        $province = Province::findOrFail($id);
+        return response()->json($province);
+    }
 }

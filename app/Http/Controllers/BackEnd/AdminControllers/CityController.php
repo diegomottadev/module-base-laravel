@@ -16,4 +16,9 @@ class CityControler extends Controller
         $cities = City::where('province_id',$province->id)->selectRaw('id,name')->get();;
         return response()->json($cities);
     }
+
+    public function getCity($id){
+        $city = City::findOrFail($id);
+        return response()->json($city);
+    }
 }
