@@ -2068,6 +2068,7 @@ __webpack_require__.r(__webpack_exports__);
       this.provinces = [];
 
       if (this.selectedCountry.id > 0) {
+        this.address.country_id = this.selectedCountry.id;
         this.getProvinces(this.selectedCountry.id);
       }
     },
@@ -2075,6 +2076,7 @@ __webpack_require__.r(__webpack_exports__);
       this.cities = [];
 
       if (this.selectedProvince.id > 0) {
+        this.address.province_id = this.selectedProvince.id;
         this.getCities(this.selectedProvince.id);
       }
     },
@@ -2082,7 +2084,13 @@ __webpack_require__.r(__webpack_exports__);
       this.towns = [];
 
       if (this.selectedCity.id > 0) {
+        this.address.city_id = this.selectedCity.id;
         this.getTowns(this.selectedCity.id);
+      }
+    },
+    selectedTown: function selectedTown() {
+      if (this.selectedTown.id > 0) {
+        this.address.town_id = this.selectedTown.id;
       }
     }
   },
@@ -15925,14 +15933,15 @@ if (token) {
 /*!******************************************************!*\
   !*** ./resources/js/components/AddressComponent.vue ***!
   \******************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AddressComponent_vue_vue_type_template_id_78aa8954___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddressComponent.vue?vue&type=template&id=78aa8954& */ "./resources/js/components/AddressComponent.vue?vue&type=template&id=78aa8954&");
 /* harmony import */ var _AddressComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddressComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/AddressComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _AddressComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AddressComponent.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/AddressComponent.vue?vue&type=style&index=0&lang=css&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _AddressComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _AddressComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _AddressComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AddressComponent.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/AddressComponent.vue?vue&type=style&index=0&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -15964,7 +15973,7 @@ component.options.__file = "resources/js/components/AddressComponent.vue"
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/AddressComponent.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

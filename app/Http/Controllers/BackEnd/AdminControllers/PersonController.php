@@ -48,14 +48,14 @@ class PersonController extends Controller
 
     public function update(Request $request, $id)
     {
-
+        
         $person  = Person::with(['contact','address'])->findOrFail($id);
         $person->update($request->all());
         $contact = $person->contact;
         $contact->update($request->all());
         $address = $person->address;
         $address->update($request->all());
-        
+
         return redirect()->route('persons.index')->with('toast_success', 'Persona ' . $person->nameComplete . ' modificada');
     }
 

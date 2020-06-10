@@ -159,19 +159,27 @@ export default {
         selectedCountry: function() {
             this.provinces = [];
             if (this.selectedCountry.id > 0) {
+                this.address.country_id = this.selectedCountry.id;
                 this.getProvinces(this.selectedCountry.id);
             }
         },
         selectedProvince: function() {
             this.cities = [];
             if (this.selectedProvince.id > 0) {
+                this.address.province_id = this.selectedProvince.id;
                 this.getCities(this.selectedProvince.id);
             }
         },
         selectedCity: function() {
             this.towns = [];
             if (this.selectedCity.id > 0) {
+                this.address.city_id = this.selectedCity.id;
                 this.getTowns(this.selectedCity.id);
+            }
+        },
+        selectedTown: function() {
+            if (this.selectedTown.id > 0) {
+                this.address.town_id = this.selectedTown.id;
             }
         }
     },
