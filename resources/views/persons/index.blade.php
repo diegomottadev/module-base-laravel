@@ -84,9 +84,9 @@
                                         <td>
                                             <div style="color:white;" class="btn-group" role="group"
                                                 aria-label="Basic example">
-                                                <a type="button" class="btn btn-sm btn-info"
+                                                {{-- <a type="button" class="btn btn-sm btn-info"
                                                     href="{{route('persons.show',$person->id)}}"><i
-                                                        class="fa fa-eye"></i> Ver</a>
+                                                        class="fa fa-eye"></i> Ver</a> --}}
                                                 <a type="button" class="btn btn-sm btn-warning"
                                                     href="{{route('persons.edit',$person->id)}}"><i
                                                         class="fa fa-edit"></i> Editar</a>

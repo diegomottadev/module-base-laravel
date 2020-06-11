@@ -19,6 +19,7 @@ class CreateContactsTable extends Migration
             $table->string('celphone')->nullable();
             $table->string('telphone')->nullable();
             $table->string('web')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

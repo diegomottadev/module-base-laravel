@@ -5,7 +5,7 @@
                 <label class="control-label">Paises</label>
                 <input
                     type="hidden"
-                    name="country"
+                    :name="nameded+'country'"
                     v-model="address.country_id"
                 />
                 <v-select
@@ -143,7 +143,6 @@ export default {
             selectedProvince: "",
             selectedCity: "",
             selectedTown: "",
-
             address: {
                 address: "",
                 dpto: "",
@@ -227,9 +226,17 @@ export default {
             });
         }
     },
-    props: ["addressj"],
+    props: ["addressj","named"],
+    computed: {
+        // a computed getter
+        nameded: function () {
+        // `this` points to the vm instance
+            console.log(this.named);
+            return this.named;
+        }
+      },
     mounted() {
-        this.getCountries();
+
         if (this.addressj !== undefined) {
             this.address = Object.assign(this.addressj, this.addres);
             if (this.address.country_id > 0) {

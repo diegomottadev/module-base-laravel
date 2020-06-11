@@ -24,6 +24,7 @@ class CreatePersonsTable extends Migration
             $table->foreignId('user_id')->nullable()->constrained();
             $table->foreignId('contact_id')->nullable()->constrained();
             $table->foreignId('address_id')->nullable()->constrained();
+            $table->foreignId('company_id')->nullable()->constrained();
             $table->timestamps();
             $table->softDeletes();
         });

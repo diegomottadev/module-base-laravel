@@ -2152,10 +2152,16 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   },
-  props: ["addressj"],
+  props: ["addressj", "named"],
+  computed: {
+    // a computed getter
+    nameded: function nameded() {
+      // `this` points to the vm instance
+      console.log(this.named);
+      return this.named;
+    }
+  },
   mounted: function mounted() {
-    this.getCountries();
-
     if (this.addressj !== undefined) {
       this.address = Object.assign(this.addressj, this.addres);
 
@@ -3325,7 +3331,7 @@ var render = function() {
                 expression: "address.country_id"
               }
             ],
-            attrs: { type: "hidden", name: "country" },
+            attrs: { type: "hidden", name: _vm.nameded + "country" },
             domProps: { value: _vm.address.country_id },
             on: {
               input: function($event) {
@@ -15933,15 +15939,14 @@ if (token) {
 /*!******************************************************!*\
   !*** ./resources/js/components/AddressComponent.vue ***!
   \******************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AddressComponent_vue_vue_type_template_id_78aa8954___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddressComponent.vue?vue&type=template&id=78aa8954& */ "./resources/js/components/AddressComponent.vue?vue&type=template&id=78aa8954&");
 /* harmony import */ var _AddressComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddressComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/AddressComponent.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _AddressComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _AddressComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _AddressComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AddressComponent.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/AddressComponent.vue?vue&type=style&index=0&lang=css&");
+/* empty/unused harmony star reexport *//* harmony import */ var _AddressComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AddressComponent.vue?vue&type=style&index=0&lang=css& */ "./resources/js/components/AddressComponent.vue?vue&type=style&index=0&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -15973,7 +15978,7 @@ component.options.__file = "resources/js/components/AddressComponent.vue"
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/AddressComponent.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

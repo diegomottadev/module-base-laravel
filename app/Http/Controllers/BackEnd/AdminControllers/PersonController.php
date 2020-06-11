@@ -14,7 +14,7 @@ class PersonController extends Controller
     //
     public function index()
     {
-        $persons = Person::paginate(10);
+        $persons = Person::orderBy('updated_at', 'desc')->paginate(10);
         return view('persons/index', compact('persons'));
     }
 
