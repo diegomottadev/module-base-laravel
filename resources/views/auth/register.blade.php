@@ -159,16 +159,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label>CUIL</label>
-                                    <input type="text" placeholder="CUIL" name="cuil"
-                                        class="form-control" value="{{old('cuil')}}" >
-                                </div>
-                            </div>
-                        </div>
-
                         <h2>Datos de contacto de la empresa</h2>
                         <div class="row">
                             <div class="col-sm-6">
