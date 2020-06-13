@@ -17,9 +17,6 @@ use Illuminate\Support\Facades\Route;
 //      return view('welcome');
 //  });
 Route::get('/', 'FrontEnd\PublicsControllers\HomeController@index');
-
-Auth::routes();
-
 Route::get('/countries', 'Backend\AdminControllers\CountryController@getCountries')->name('countries');
 Route::get('/country/{id}/provinces', 'Backend\AdminControllers\ProvinceControler@getProvinces')->name('provinces');
 Route::get('/province/{id}/cities', 'Backend\AdminControllers\CityControler@getCities')->name('cities');
@@ -31,3 +28,5 @@ Route::get('/country/{id}', 'Backend\AdminControllers\CountryController@getCount
 Route::get('/province/{id}', 'Backend\AdminControllers\ProvinceControler@getProvince')->name('province');
 Route::get('/city/{id}', 'Backend\AdminControllers\CityControler@getCity')->name('city');
 Route::get('/town/{id}', 'Backend\AdminControllers\TownControler@getTown')->name('town');
+Auth::routes();
+

@@ -26,7 +26,7 @@
 
 <body class="gray-bg" >
     <div id="app">
-        <div class="wrapper wrapper-content">
+        <div class="wrapper wrapper-content animated">
             @yield('content')
         </div>
     </div>

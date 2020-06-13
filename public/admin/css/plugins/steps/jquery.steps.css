@@ -1,6 +1,3 @@
-/*
-    Common
-*/
 
 .wizard,
 .tabcontrol
@@ -31,7 +28,6 @@
     padding: 0;
 }
 
-/* Accessibility */
 .wizard > .steps .current-info,
 .tabcontrol > .steps .current-info
 {
@@ -188,7 +184,7 @@
 .wizard > .content > .body input
 {
     display: block;
-    border: 1px solid #ccc;
+    border: 1px solid #ccc; 
 }
 
 .wizard > .content > .body input[type="checkbox"]
@@ -280,10 +276,6 @@
 }
 
 
-
-/*
-    Tabcontrol
-*/
 
 .tabcontrol > .steps
 {

@@ -93,7 +93,7 @@
 @if(isset($person))
 <address-component :addressj='@json($person->address)'></address-component>
 @else
-<address-component></address-component>
+<address-component :named="''"></address-component>
 
 @endif
 <div class="form-group">

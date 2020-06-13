@@ -2100,6 +2100,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get(route("countries")).then(function (res) {
         _this.countries = res.data;
+        console.log(_this.countries);
       });
     },
     getProvinces: function getProvinces(id) {
@@ -2162,6 +2163,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
+    this.getCountries();
+
     if (this.addressj !== undefined) {
       this.address = Object.assign(this.addressj, this.addres);
 
@@ -3379,7 +3382,7 @@ var render = function() {
                 expression: "address.province_id"
               }
             ],
-            attrs: { type: "hidden", name: "province" },
+            attrs: { type: "hidden", name: _vm.nameded + "province" },
             domProps: { value: _vm.address.province_id },
             on: {
               input: function($event) {
@@ -3429,7 +3432,7 @@ var render = function() {
                 expression: "address.city_id"
               }
             ],
-            attrs: { type: "hidden", name: "city" },
+            attrs: { type: "hidden", name: _vm.nameded + "city" },
             domProps: { value: _vm.address.city_id },
             on: {
               input: function($event) {
@@ -3479,7 +3482,7 @@ var render = function() {
                 expression: "address.town_id"
               }
             ],
-            attrs: { type: "hidden", name: "town" },
+            attrs: { type: "hidden", name: _vm.nameded + "town" },
             domProps: { value: _vm.address.town_id },
             on: {
               input: function($event) {
@@ -16260,7 +16263,7 @@ var Ziggy = {
       "domain": null
     }
   },
-  baseUrl: 'http://localhost:8000/mercadomadera/public',
+  baseUrl: 'http://mercadomadera.test/',
   baseProtocol: 'http',
   baseDomain: 'localhost',
   basePort: false,

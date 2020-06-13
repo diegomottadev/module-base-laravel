@@ -23,7 +23,7 @@
 
                 <input
                     type="hidden"
-                    name="province"
+                   :name="nameded+'province'"
                     v-model="address.province_id"
                 />
                 <v-select
@@ -38,7 +38,7 @@
         <div class="col-md-3">
             <div class="form-group">
                 <label class="control-label">Departamento</label>
-                <input type="hidden" name="city" v-model="address.city_id" />
+                <input type="hidden" :name="nameded+'city'" v-model="address.city_id" />
                 <v-select
                     class="style-chooser"
                     v-model="selectedCity"
@@ -51,7 +51,7 @@
         <div class="col-sm-3">
             <div class="form-group">
                 <label class="control-label">Localidades</label>
-                <input type="hidden" name="town" v-model="address.town_id" />
+                <input type="hidden" :name="nameded+'town'" v-model="address.town_id" />
 
                 <v-select
                     class="style-chooser"
@@ -186,6 +186,7 @@ export default {
         getCountries: function() {
             axios.get(route("countries")).then(res => {
                 this.countries = res.data;
+                console.log(this.countries);
             });
         },
         getProvinces: function(id) {
@@ -236,7 +237,7 @@ export default {
         }
       },
     mounted() {
-
+        this.getCountries();
         if (this.addressj !== undefined) {
             this.address = Object.assign(this.addressj, this.addres);
             if (this.address.country_id > 0) {

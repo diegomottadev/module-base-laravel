@@ -18,8 +18,13 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $maps = [
+        'name' => 'nameUser',
+    ];
+    protected $append = ['nameUser'];
+
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','nameUser'
     ];
 
     /**
@@ -43,5 +48,12 @@ class User extends Authenticatable
     public function person()
     {
         return $this->hasOne('App\Person');
+    }
+
+
+
+    public function setUserNameAttribute($value)
+    {
+        return $this->attributes['name'] = $value;
     }
 }
